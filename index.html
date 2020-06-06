@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/style.css" type="text/css">
+    <script src="scripts/interaction.js"></script>
+    <title>Страница об интересном человеке</title>
+</head>
+<body onload="inflatePictures();">
+    <header>
+        <div><img src="imgs/avatar.png"></div>
+        <div class="header-content">
+            <h2>Широких Александр Викторович</h2>
+            <p><b>Институт:</b> Информационных технологий и управления в технических системах</p>
+            <p><b>Группа:</b> ИС/б-18-1з</p>
+            <p>Просто человек, который сделал эту страницу</p>
+            <nav class="social">
+                <ul>
+                    <li><a href="https://vk.com/bin_zien"><img src="imgs/ic_vk.png"></a></li>
+                    <li><a href="https://github.com/alexandershirokih"><img src="imgs/ic_github.png"></a></li>
+                    <li><a href="https://chat.is.sevsu.ru/direct/ShirokikhAV"><img src="imgs/ic_sevsu.png"></a></li>
+                    <li><a href="mailto:alexandrshirokih@mail.ru"><img src="imgs/ic_email.png"></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <article>
+        <section>
+            <h3>Здесь должно быть что-то умное</h3>
+            <span class="date">06.06.2020 12:00:00</span>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </section>
+
+        <section class="schedule">
+            <h2>Расписание</h2>
+            <span>06.06.2020</span>
+            <table>
+                <tr>
+                    <td>11:50</td>
+                    <td rowspan="2"><b>Технологии СПП (уст.)</b> ст.пр. Строганов В.А.</td>
+                    <td>Л</td>
+                </tr>
+                <tr>
+                    <td>14:00</td>
+                    <td>ЛЗ</td>
+                </tr>
+                <tr>
+                    <td>15:40</td>
+                    <td rowspan="2"><b>Основы Web-дизайна</b> ст.пр. Дрозин А.Ю.</td>
+                    <td rowspan="2">Зач.</td>
+                </tr>
+                <script>
+                    
+                </script>
+                <tr>
+                    <td>17:20</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="left-post">
+            <h3>Рандомных картинок пост</h3>
+            <span class="date">06.06.2020 12:30:00</span>
+            <div id="rand-pictures"></div>
+        </section>
+
+        <section class="right-post">
+            <p>Напишите умные мысли, а мы их опубликуем на этой странице</p>
+            <textarea id="post-text">Кстати, это textarea</textarea>
+            <button onclick="writePost();">Отправить</button>
+        </section>
+    </article>
+    <footer>
+        Данный сайт не использует механизм <strong>cookies</strong>, да он ему и не нужен
+        <button onclick="hideFooter();">Закрыть</button>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,36 @@
+form {
+  max-width: 380px;
+  top: 0;
+  margin: 40px;
+  padding: 28px 100px 28px 60px;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+}
+
+form input[type="text"],
+form input[type="email"] {
+  border: 5px solid white;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.5);
+  margin: 0 0 10px 0;
+  width: 100%;
+}
+
+form > div {
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.5);
+  margin: 20px 0px;
+}
+
+form input[type="submit"],
+form input[type="reset"] {
+  padding: 10px;
+  border: none;
+  background-color: #3f51b5;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 28px;
+}

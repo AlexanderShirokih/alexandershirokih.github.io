@@ -1,0 +1,15 @@
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+tr:first-child, tr:nth-child(2), tr:nth-child(3) {
+    text-align: center;
+    font-weight: bold;
+}
+
+.study-table {
+  width: 100%;
+  border-collapse: collapse;
+}

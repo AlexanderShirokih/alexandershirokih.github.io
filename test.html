@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="styles/style.css" type="text/css" />
@@ -8,7 +8,7 @@
   </head>
   <body>
     <header>
-      <div><img src="imgs/avatar.png" /></div>
+      <div><img src="imgs/avatar.png" alt="Avatar picture" /></div>
       <div class="header-content">
         <h2>Широких Александр Викторович</h2>
         <nav class="menu">
@@ -26,48 +26,100 @@
     </header>
     <main>
       <article>
-        <section>
-          <h3>Форма обратной связи</h3>
-          <p>Оставьте свои данные, а я продам их мошенникам</p>
-          <form
-            method="GET"
-            action="mailto:alexandrshirokih@mail.ru"
-            enctype="multipart/form-data"
-          >
-            <input type="text" id="name" name="name" placeholder="ФИО" />
-            <br />
-            <input type="email" id="email" name="email" placeholder="Email" />
+        <h3>
+          Тест по <span>Теории вероятностей и математической статистике</span>
+        </h3>
+        <form
+          method="GET"
+          action="mailto:alexandrshirokih@mail.ru"
+          enctype="multipart/form-data"
+        >
+          <input type="text" id="name" name="name" placeholder="ФИО" />
+          <br />
+          <div>
+            <div>Группа</div>
+            <select name="group" id="group">
+              <optgroup label="1 Курс">
+                <option value="is-20_1_o">ИС-20/1-о</option>
+                <option value="is-20_1_z">ИС-20/1-з</option>
+              </optgroup>
+              <optgroup label="2 Курс">
+                <option value="is-19_1_o">ИС-19/1-о</option>
+                <option value="is-19_1_z">ИС-19/1-з</option>
+              </optgroup>
+              <optgroup label="3 Курс">
+                <option value="is-18_1_o">ИС-18/1-о</option>
+                <option value="is-18_1_z">ИС-18/1-з</option>
+              </optgroup>
+              <optgroup label="4 Курс">
+                <option value="is-17_1_o">ИС-17/1-о</option>
+                <option value="is-17_1_z">ИС-17/1-з</option>
+              </optgroup>
+              <optgroup label="5 Курс">
+                <option value="is-16_1_z">ИС-17/1-з</option>
+              </optgroup>
+            </select>
+          </div>
+          <div>
+            <div>Событие называется достоверным, если ...</div>
+            <select name="q1" id="q1" style="width: 100%">
+              <option disabled selected value>-- Выберите ответ --</option>
+              <optgroup label="оно является единственно возможным исходом..">
+                <option value="1">
+                  , и невозможным, если в данном испытании оно заведомо не может
+                  произойти.
+                </option>
+                <option value="2">
+                  , и невозможным, если в данном испытании оно заведомо может
+                  произойти.
+                </option>
+              </optgroup>
+              <optgroup label="оно является не единственно возможным исходом..">
+                <option value="3">
+                  , и невозможным, если в данном испытании оно заведомо не может
+                  произойти.
+                </option>
+                <option value="4">
+                  , и невозможным, если в данном испытании оно заведомо может
+                  произойти.
+                </option>
+              </optgroup>
+              <optgroup label="оно объективно ...">
+                <option value="5">
+                  может наступить или не наступить в данном испытании.
+                </option>
+                <option value="6">
+                  несовместно и одно из них обязательно происходит
+                </option>
+                <option value="7">
+                  исключает появление другого в одном и том же испытании
+                </option>
+              </optgroup>
+            </select>
+          </div>
+          <div>
             <div>
-              <div>Пол</div>
-              <input type="radio" id="male" name="gender" value="male" />
-              <label for="male">М</label>
-
-              <input type="radio" id="female" name="gender" value="female" />
-              <label for="female">Ж</label>
-
-              <input type="radio" id="undef" name="gender" value="undef" />
-              <label for="undef">Не определился</label>
-            </div>
-
-            <div>
-              <div>Возраст</div>
-              <select name="age" id="age">
-                <option value="0-17">0-17</option>
-                <option value="18-24">18-24</option>
-                <option value="25-30">25-30</option>
-                <option value="31-40">31-40</option>
-                <option value="41-55">41-55</option>
-                <option value="56-68">56-68</option>
-                <option value="69-90">69-90</option>
-                <option value="90+">90</option>
-              </select>
+              В терапевтическом отделении больницы 70% пациентов - женщины, а
+              21% - курящие мужчины. Наугад выбирают пациента. Он оказывается
+              мужчиной. Какова вероятность того, что он курит?
             </div>
             <br />
-            <input type="submit" value="Отправить" />
-            <br />
-            <input type="reset" value="Очистить форму" />
-          </form>
-        </section>
+            <input type="text" style="width: 60px !important" name="q2" />
+          </div>
+          <div>
+            <div>Выберите примеры дискретных случайных величин</div>
+            <input type="checkbox" name="q3" value="1" />Количество бракованных
+            изделий в данной партии<br />
+            <input type="checkbox" name="q3" value="2" />Дальность полета
+            артиллерийского снаряда <br />
+            <input type="checkbox" name="q3" value="3" />Число произведенных
+            выстрелов до первого попадания<br />
+          </div>
+          <br />
+          <input type="submit" value="Отправить" />
+          <br />
+          <input type="reset" value="Очистить форму" />
+        </form>
       </article>
     </main>
   </body>

@@ -5,23 +5,15 @@
     <link rel="stylesheet" href="styles/style.css" type="text/css" />
     <link rel="stylesheet" href="styles/contacts.css" type="text/css" />
     <title>Тест</title>
+    <script src="scripts/common.js"></script>
+    <script src="scripts/test.js"></script>
   </head>
   <body>
     <header>
       <div><img src="imgs/avatar.png" alt="Avatar picture" /></div>
       <div class="header-content">
         <h2>Широких Александр Викторович</h2>
-        <nav class="menu">
-          <ul>
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="about.html">Обо мне</a></li>
-            <li><a href="iterests.html">Мои интересы</a></li>
-            <li><a href="study.html">Учеба</a></li>
-            <li><a href="photos.html">Фотоальбом</a></li>
-            <li><a href="contacts.html">Контакт</a></li>
-            <li><a href="test.html">Тест по дисциплине</a></li>
-          </ul>
-        </nav>
+        <nav id="menu"></nav>
       </div>
     </header>
     <main>
@@ -31,14 +23,23 @@
         </h3>
         <form
           method="GET"
+          id="quiz"
           action="mailto:alexandrshirokih@mail.ru"
-          enctype="multipart/form-data"
+          onsubmit="return validateQuizForm();"
         >
-          <input type="text" id="name" name="name" placeholder="ФИО" />
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="ФИО"
+            required
+            pattern="[А-я]+ [А-я]+ [А-я]+"
+          />
           <br />
           <div>
             <div>Группа</div>
-            <select name="group" id="group">
+            <select name="group" id="group" required>
+              <option disabled selected value>-- Выберите группу --</option>
               <optgroup label="1 Курс">
                 <option value="is-20_1_o">ИС-20/1-о</option>
                 <option value="is-20_1_z">ИС-20/1-з</option>
@@ -62,7 +63,7 @@
           </div>
           <div>
             <div>Событие называется достоверным, если ...</div>
-            <select name="q1" id="q1" style="width: 100%">
+            <select name="q1" id="q1" style="width: 100%" required>
               <option disabled selected value>-- Выберите ответ --</option>
               <optgroup label="оно является единственно возможным исходом..">
                 <option value="1">
@@ -104,7 +105,12 @@
               мужчиной. Какова вероятность того, что он курит?
             </div>
             <br />
-            <input type="text" style="width: 60px !important" name="q2" />
+            <input
+              type="text"
+              style="width: 60px !important"
+              name="q2"
+              required
+            />
           </div>
           <div>
             <div>Выберите примеры дискретных случайных величин</div>

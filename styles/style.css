@@ -49,32 +49,32 @@ header p {
   color: rgb(194, 194, 194);
 }
 
-header .menu {
+header #menu {
   padding-top: 12px;
 }
 
-header .menu a {
+header #menu a {
   text-decoration: none;
   font-size: larger;
   padding: 20px;
   color: white;
 }
 
-header .menu a:hover {
+header #menu a:hover {
   font-size: larger;
   background-color: white;
   color: blue;
 }
 
 .social ul,
-header .menu ul {
+header #menu ul {
   margin-top: 20px;
   padding: 0;
   list-style: none;
 }
 
 .social li,
-header .menu li {
+header #menu li {
   margin-right: 16px;
   display: inline;
 }
@@ -125,7 +125,7 @@ article h2 {
   text-transform: uppercase;
 }
 
-section p span {
+article span {
   background: whitesmoke;
   padding: 4px;
 }

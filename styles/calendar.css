@@ -1,0 +1,96 @@
+.date-picker {
+  position: relative;
+  background: none;
+  padding: 0px;
+  display: block;
+}
+
+.date-picker i {
+  cursor: pointer;
+}
+
+.date-picker .pick-button {
+  position: absolute;
+  right: 1px;
+  top: 16px;
+}
+
+.date-picker .calendar {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  width: 380px;
+  transition: ease-in-out 0.4s;
+}
+
+.date-picker .calendar.calendar-unfold {
+  visibility: visible;
+  opacity: 1;
+}
+
+.date-picker .month-selector {
+  background-color: turquoise;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.calendar i:hover,
+.calendar .days li:hover {
+  background-color: rgba(224, 224, 224, 0.7);
+  border-radius: 100%;
+  padding: 4px 12px;
+  color: magenta;
+  overflow: hidden;
+  box-sizing: content-box;
+}
+
+.date-picker .month-selector i {
+  padding: 12px;
+}
+
+.date-picker .month-selector .month {
+  display: grid;
+  row-gap: 20px;
+  justify-items: center;
+}
+
+.date-picker .month-selector .month * {
+  margin: 0px;
+}
+
+.date-picker .dows {
+  display: grid;
+  background-color: #e4e4e4;
+  width: 100%;
+  height: 60px;
+  list-style: none;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.date-picker .dows li {
+  margin: 12px;
+}
+
+.date-picker .days {
+  display: grid;
+  background-color: whitesmoke;
+  width: 100%;
+  height: 220px;
+  list-style: none;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: auto;
+  justify-items: center;
+  align-items: center;
+}
+
+.date-picker .days * {
+  cursor: pointer;
+}

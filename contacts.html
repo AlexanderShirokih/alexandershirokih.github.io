@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="styles/contacts.css" type="text/css" />
     <title>Обо мне</title>
     <script src="scripts/common.js"></script>
-    <script src="scripts/calender.js"></script>
+    <script type="module" src="./scripts/contacts.js"></script>
   </head>
   <body>
     <header>
@@ -54,39 +54,13 @@
       <article>
         <h3>Форма обратной связи</h3>
         <p>Оставьте свои персональные данные, а я продам их мошенникам</p>
-        <form method="GET" action="mailto:alexandrshirokih@mail.ru">
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="ФИО"
-            required
-            pattern="[А-я]+ [А-я]+ [А-я]+"
-          />
+        <form method="GET" action="mailto:alexandrshirokih@mail.ru" novalidate>
+          <input type="text" id="name" name="name" placeholder="ФИО" />
           <br />
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Email"
-            required
-          />
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder="Телефон"
-            required
-            pattern="\+[73]\d{9,11}"
-          />
+          <input type="email" id="email" name="email" placeholder="Email" />
+          <input type="tel" id="phone" name="phone" placeholder="Телефон" />
           <span class="date-picker" id="date-picker">
-            <input
-              type="text"
-              id="date"
-              placeholder="Дата рождения"
-              required
-              pattern="\d{1,2}\/\d{1,2}\/\d{4}"
-            />
+            <input type="text" id="date" placeholder="Дата рождения" />
             <i class="pick-button fas fa-calendar-alt"></i>
             <div class="calendar">
               <div class="month-selector">
@@ -100,19 +74,21 @@
           <br />
           <div>
             <div>Пол</div>
-            <input type="radio" id="male" name="gender" value="male" required />
-            <label for="male">М</label>
+            <div id="gender">
+              <input type="radio" id="male" name="gender" value="male" />
+              <label for="male">М</label>
 
-            <input type="radio" id="female" name="gender" value="female" />
-            <label for="female">Ж</label>
+              <input type="radio" id="female" name="gender" value="female" />
+              <label for="female">Ж</label>
 
-            <input type="radio" id="undef" name="gender" value="undef" />
-            <label for="undef">Не определился</label>
+              <input type="radio" id="undef" name="gender" value="undef" />
+              <label for="undef">Не определился</label>
+            </div>
           </div>
 
           <div>
             <div>Возраст</div>
-            <select name="age" id="age" required>
+            <select name="age" id="age">
               <option disabled selected value>-- Выберите возраст --</option>
               <option value="0-17">0-17</option>
               <option value="18-24">18-24</option>
@@ -125,7 +101,7 @@
             </select>
           </div>
           <br />
-          <input type="submit" value="Отправить" />
+          <input id="contacts-submit" type="submit" value="Отправить" />
           <br />
           <input type="reset" value="Очистить форму" />
         </form>

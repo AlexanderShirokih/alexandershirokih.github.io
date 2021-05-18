@@ -1,10 +1,26 @@
-function validateQuizForm() {
-  var items = [...document.forms["quiz"]["q3"]];
-  var isValid = items.filter((i) => i.checked).length >= 2;
+import {
+  Form,
+  FormField,
+  CheckboxValidator,
+  PatternValidator,
+  NotEmptyValidator,
+} from "./modules/validation.js";
 
-  if (!isValid) {
-      alert("В вопросе №3 нужно выбрать хотя бы 2 пункта!");
-    return false;
+const quizForm = new Form(
+  [
+    new FormField("name", new PatternValidator(/[А-я]+ [А-я]+ [А-я]+/)),
+    new FormField("group", new NotEmptyValidator()),
+    new FormField("q1", new NotEmptyValidator()),
+    new FormField("q2", new NotEmptyValidator()),
+    new FormField("q3", new CheckboxValidator(2)),
+  ],
+  (isValid) => {
+    const submitButton = document.getElementById("test-submit");
+    submitButton.disabled = !isValid;
+    submitButton.className = isValid ? "" : "inactive";
   }
-  return true;
-}
+);
+
+window.addEventListener("load", () => {
+  quizForm.addListeners();
+});

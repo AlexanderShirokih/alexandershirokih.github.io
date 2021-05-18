@@ -22,7 +22,6 @@ const months = [
 ];
 
 class Calendar {
-
   constructor(date) {
     this.date = date;
   }
@@ -47,7 +46,7 @@ class Calendar {
     return document.getElementById("date");
   }
 
-  updateCalendar() {
+  #updateCalendar() {
     var format = `${
       this.date.getMonth() + 1
     }/${this.date.getDate()}/${this.date.getFullYear()}`;
@@ -73,23 +72,31 @@ class Calendar {
       li.innerText = i;
       li.addEventListener("click", () => {
         this.date.setDate(i);
-        this.updateCalendar();
+        this.#updateCalendar();
       });
       this.days.appendChild(li);
     }
   }
 
-  init() {
+  setup() {
+    let picker = document.getElementById("date-picker");
+    let pickerButton = picker.getElementsByClassName("pick-button")[0];
+
+    pickerButton.addEventListener("click", () => {
+      let calendarDiv = picker.getElementsByClassName("calendar")[0];
+      calendarDiv.classList.toggle("calendar-unfold");
+    });
+
     this.dows.innerHTML += daysOfWeek.map((dow) => `<li>${dow}</li>`).join("");
 
     this.year.addEventListener("change", (event) => {
       this.date.setFullYear(event.target.value);
-      this.updateCalendar();
+      this.#updateCalendar();
     });
 
     this.month.addEventListener("change", (event) => {
       this.date.setMonth(event.target.value);
-      this.updateCalendar();
+      this.#updateCalendar();
     });
 
     this.dateInput.addEventListener("input", (event) => {
@@ -98,7 +105,7 @@ class Calendar {
 
       if (value == "") {
         this.date = new Date();
-        this.updateCalendar();
+        this.#updateCalendar();
       }
 
       var d = new Date(value);
@@ -109,14 +116,14 @@ class Calendar {
         d.getFullYear() <= years[years.length - 1]
       ) {
         this.date = d;
-        this.updateCalendar();
+        this.#updateCalendar();
       }
     });
 
     createOptions(this.year, years, (_i, v) => v);
     createOptions(this.month, months, (i, _m) => i);
 
-    this.updateCalendar();
+    this.#updateCalendar();
 
     function createOptions(select, values, valueSelector) {
       for (var i = 0; i < values.length; i++) {
@@ -129,24 +136,4 @@ class Calendar {
   }
 }
 
-var calendar = new Calendar(new Date());
-
-function initDatePicker() {
-  let picker = document.getElementById("date-picker");
-  let pickerButton = picker.getElementsByClassName("pick-button")[0];
-
-  pickerButton.addEventListener("click", () => {
-    let calendarDiv = picker.getElementsByClassName("calendar")[0];
-    toggleCalendar(calendarDiv);
-  });
-
-  calendar.init();
-}
-
-function toggleCalendar(calendar) {
-  calendar.classList.toggle("calendar-unfold");
-}
-
-window.addEventListener("load", () => {
-  initDatePicker();
-});
+export { Calendar };

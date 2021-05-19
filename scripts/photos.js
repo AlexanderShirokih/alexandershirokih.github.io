@@ -11,6 +11,10 @@ function inflatePictures() {
 
     wrapper.appendChild(img);
     wrapper.appendChild(tooltip);
+    
+    wrapper.addEventListener("click", () => {
+      wrapper.classList.toggle("zoomed");
+    });
 
     picsContainer.appendChild(wrapper);
   }

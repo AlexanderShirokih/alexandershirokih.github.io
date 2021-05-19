@@ -5,7 +5,7 @@ class Validator {
   /**
    * Checks field for validity.
    * @param {HTMLElement} element HTMLElement to be validated
-   * @returns {boolean} `true` is field completes validation sucessfully
+   * @returns {boolean} `true` is field completes validation successfully
    */
   isValid(element) {
     return false;
@@ -26,8 +26,8 @@ class PatternValidator extends Validator {
   #pattern;
 
   /**
-   * Constructs [ParrernValidator] using RegExp pattern
-   * @param {String} pattern parrern for validation
+   * Constructs [PatternValidator] using RegExp pattern
+   * @param {String} pattern pattern for validation
    */
   constructor(pattern) {
     super();
@@ -57,7 +57,7 @@ class NotEmptyValidator extends Validator {
 }
 
 /**
- * Checks that the any radio input in group inside the given container is checked.
+ * Checks that any radio input in the group inside the given container is checked.
  */
 class RadioGroupValidator extends Validator {
   isValid(element) {
@@ -124,7 +124,7 @@ class FormField {
 
   /**
    * Checks field for validity and appends error span before this element
-   * if field has an error.
+   * if the field has an error.
    */
   validate() {
     const input = this.element;
@@ -169,7 +169,7 @@ class Form {
   }
 
   /**
-   * Assigns `focusout` listeners to all fields to validate them when event is triggered.
+   * Assigns `focusout` listeners to all fields to validate them when the event is triggered.
    */
   addListeners() {
     this.#validate();

@@ -2,7 +2,7 @@ import { loadPageVisitList } from "./modules/tracking.js";
 import { menuPages } from "./modules/static-content.js";
 
 /**
- * Fills visit history from the specified storage
+ * Fills the visit history from the specified storage
  * @param {Storage} storage
  */
 function createHistoryTable(containerId, storage) {

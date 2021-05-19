@@ -1,3 +1,5 @@
+import { interests } from "./modules/static-content.js";
+
 function inflateInterests() {
   let main = document.getElementById("interersts-main");
 
@@ -22,6 +24,36 @@ function inflateInterests() {
   interests.forEach(function (interest) {
     main.appendChild(createArticle(interest));
   });
+}
+
+function createArticle(data) {
+  let article = document.createElement("article");
+
+  if (data.hasOwnProperty("id")) {
+    article.id = data.id;
+  }
+
+  if (data.hasOwnProperty("header")) {
+    let header = document.createElement("section");
+    header.classList.add("content-header");
+    let img = document.createElement("img");
+    img.src = data.header.img;
+    img.alt = data.header.title;
+    header.appendChild(img);
+
+    let title = document.createElement("h1");
+    title.innerText = data.header.title;
+    header.appendChild(title);
+
+    article.appendChild(header);
+  }
+
+  if (data.content instanceof Node) {
+    article.appendChild(data.content);
+  } else {
+    article.innerHTML += data.content;
+  }
+  return article;
 }
 
 window.addEventListener("load", () => {

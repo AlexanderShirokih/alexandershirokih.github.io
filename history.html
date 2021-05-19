@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles/style.css" type="text/css" />
+    <link rel="stylesheet" href="styles/history.css" type="text/css" />
+    <title>История просмотра</title>
+    <script type="module" src="scripts/common.js"></script>
+    <script type="module" src="scripts/history.js"></script>
+  </head>
+  <body>
+    <header>
+      <div><img src="imgs/avatar.png" alt="Avatar" /></div>
+      <div class="header-content">
+        <h2>Широких Александр Викторович</h2>
+        <nav id="menu"></nav>
+      </div>
+    </header>
+    <main>
+      <article>
+        <h2>История текущей сессии</h2>
+        <div id="session-history" class="history-table"></div>
+      </article>
+      <article>
+        <h2>История за все время</h2>
+        <div id="local-history" class="history-table"></div>
+      </article>
+    </main>
+  </body>
+</html>

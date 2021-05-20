@@ -1,25 +1,18 @@
-function inflatePictures() {
-  var picsContainer = document.getElementById("rand-pictures");
-  for (let i = 1; i <= 15; i++) {
-    let wrapper = document.createElement("div");
-    let img = document.createElement("img");
-    img.src = `imgs/posts/pic${i}.jpg`;
-    img.alt = "Random picture";
+$(() => {
+  const picsContainer = $("#rand-pictures");
 
-    let tooltip = document.createElement("span");
-    tooltip.innerText = `Random picture ${i}`;
+  $.each(Array(15), (i) => {
+    const parent = $("<div/>");
 
-    wrapper.appendChild(img);
-    wrapper.appendChild(tooltip);
-    
-    wrapper.addEventListener("click", () => {
-      wrapper.classList.toggle("zoomed");
-    });
-
-    picsContainer.appendChild(wrapper);
-  }
-}
-
-window.addEventListener("load", () => {
-  inflatePictures();
+    parent
+      .on("click", () => parent.toggleClass("zoomed"))
+      .append(
+        $("<img/>", {
+          src: `imgs/posts/pic${i + 1}.jpg`,
+          alt: "Random picture",
+        })
+      )
+      .append($("<span/>", { text: `Random picture ${i + 1}` }))
+      .appendTo(picsContainer);
+  });
 });

@@ -2,51 +2,50 @@ import { getCurrentPage, incrementPageCounters } from "./modules/tracking.js";
 import { menuPages } from "./modules/static-content.js";
 
 function inflateMenu() {
-  let ul = document.createElement("ul");
+  const ul = $("<ul/>").appendTo($("#menu"));
 
   let currentPage = getCurrentPage();
 
   for (const page of menuPages) {
-    let entry = document.createElement("li");
+    const entry = $("<li/>").appendTo(ul);
 
     if (currentPage.includes(page.href)) {
-      entry.innerHTML = `<span class="menu-active">${page.title}</span>`;
+      entry.append(
+        $("<span/>", {
+          text: page.title,
+          class: "menu-active",
+        })
+      );
     } else if (page.hasOwnProperty("extra")) {
-      entry.innerHTML = `<span style="cursor:pointer;">${page.title}</span>`;
+      entry.append(
+        $("<span/>", { text: page.title })
+          .css("cursor", "poiner")
+          .on("click", () => entry.toggleClass("clicked"))
+      );
 
-      entry.onclick = function () {
-        entry.classList.toggle("clicked");
-      };
-
-      var submenu = document.createElement("ul");
-      submenu.className = "submenu";
+      const submenu = $("<ul/>").addClass("submenu").appendTo(entry);
 
       for (const subitem of page.extra) {
-        let li = document.createElement("li");
-        li.innerHTML = `<a href="${page.href}#${subitem.id}">${subitem.header.title}</a>`;
-
-        submenu.appendChild(li);
+        $("<li/>")
+          .append(
+            $("<a/>", {
+              href: [page.href, subitem.id].join("#"),
+              text: subitem.header.title,
+            })
+          )
+          .appendTo(submenu);
       }
-      entry.appendChild(submenu);
     } else {
-      var link = document.createElement("a");
-      link.href = page.href;
-      link.innerText = page.title;
-      entry.appendChild(link);
+      $("<a />", {
+        href: page.href,
+        text: page.title,
+      }).appendTo(entry);
     }
-
-    ul.appendChild(entry);
   }
-
-  document.getElementById("menu").appendChild(ul);
 }
 
 function inflateDate() {
-  var header = document.getElementsByTagName("header")[0];
-  var dateBlock = document.createElement("div");
-  dateBlock.className = "date";
-
-  header.appendChild(dateBlock);
+  const dateBlock = $("<div/>").addClass("date").appendTo($("header").get(0));
 
   function refreshDate() {
     let date = new Date();
@@ -65,14 +64,14 @@ function inflateDate() {
     let dow = dows[date.getDay()];
     let time = date.toLocaleTimeString("ru");
 
-    dateBlock.innerText = `${day}.${month}.${year} ${dow}, ${time}`;
+    dateBlock.text(`${day}.${month}.${year} ${dow}, ${time}`);
   }
 
   refreshDate();
   setInterval(refreshDate, 1000);
 }
 
-window.addEventListener("load", () => {
+$(() => {
   inflateMenu();
   inflateDate();
   incrementPageCounters();

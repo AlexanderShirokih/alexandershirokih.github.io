@@ -14,13 +14,10 @@ const quizForm = new Form(
     new FormField("q2", new NotEmptyValidator()),
     new FormField("q3", new CheckboxValidator(2)),
   ],
-  (isValid) => {
-    const submitButton = document.getElementById("test-submit");
-    submitButton.disabled = !isValid;
-    submitButton.className = isValid ? "" : "inactive";
-  }
+  (isValid) =>
+    $("#test-submit")
+      .attr("disabled", !isValid)
+      .attr("class", isValid ? "" : "inactive")
 );
 
-window.addEventListener("load", () => {
-  quizForm.addListeners();
-});
+$(() => quizForm.addListeners());

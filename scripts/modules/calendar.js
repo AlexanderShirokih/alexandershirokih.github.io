@@ -27,79 +27,73 @@ class Calendar {
   }
 
   get year() {
-    return document.getElementById("year");
+    return $("#year");
   }
 
   get month() {
-    return document.getElementById("month");
+    return $("#month");
   }
 
   get days() {
-    return document.getElementById("calendar-days");
+    return $("#calendar-days");
   }
 
   get dows() {
-    return document.getElementById("calendar-dows");
+    return $("#calendar-dows");
   }
 
   get dateInput() {
-    return document.getElementById("date");
+    return $("#date");
   }
 
   #updateCalendar() {
-    var format = `${
-      this.date.getMonth() + 1
-    }/${this.date.getDate()}/${this.date.getFullYear()}`;
-
+    const date = this.date.getDate();
     const year = this.date.getFullYear();
     const month = this.date.getMonth();
 
-    this.dateInput.value = format;
-    this.year.value = year;
-    this.month.value = month;
+    var format = `${month + 1}/${date}/${year}`;
+
+    this.dateInput.val(format);
+    this.year.val(year);
+    this.month.val(month);
 
     var firstDay = new Date(year, month, 1).getDay();
     var daysInMonth = new Date(year, month + 1, 0).getDate();
 
-    this.days.innerHTML = "";
+    this.days.empty();
 
-    for (let i = 0; i < firstDay; i++) {
-      this.days.innerHTML += `<li> </li>`;
-    }
+    $.each(Array(firstDay), () => {
+      $(`<li/>`, { text: " " }).appendTo(this.days);
+    });
 
     for (let i = 1; i <= daysInMonth; i++) {
-      let li = document.createElement("li");
-      li.innerText = i;
-      li.addEventListener("click", () => {
-        this.date.setDate(i);
-        this.#updateCalendar();
-      });
-      this.days.appendChild(li);
+      $("<li/>", { text: i })
+        .on("click", () => {
+          this.date.setDate(i);
+          this.#updateCalendar();
+        })
+        .appendTo(this.days);
     }
   }
 
   setup() {
-    let picker = document.getElementById("date-picker");
-    let pickerButton = picker.getElementsByClassName("pick-button")[0];
+    $("#date-picker .pick-button").on("click", () =>
+      $("#date-picker .calendar").toggleClass("calendar-unfold")
+    );
 
-    pickerButton.addEventListener("click", () => {
-      let calendarDiv = picker.getElementsByClassName("calendar")[0];
-      calendarDiv.classList.toggle("calendar-unfold");
-    });
+    this.dows.append(daysOfWeek.map((dow) => $(`<li>${dow}</li>`)));
 
-    this.dows.innerHTML += daysOfWeek.map((dow) => `<li>${dow}</li>`).join("");
-
-    this.year.addEventListener("change", (event) => {
+    this.year.on("change", (event) => {
       this.date.setFullYear(event.target.value);
       this.#updateCalendar();
     });
 
-    this.month.addEventListener("change", (event) => {
+    this.month.on("change", (event) => {
       this.date.setMonth(event.target.value);
       this.#updateCalendar();
     });
 
-    this.dateInput.addEventListener("input", (event) => {
+    this.dateInput.on("input", (event) => {
       const regexp = /\d{1,2}\/\d{1,2}\/\d{4}/;
       const value = event.target.value;
 
@@ -126,12 +120,14 @@ class Calendar {
     this.#updateCalendar();
 
     function createOptions(select, values, valueSelector) {
-      for (var i = 0; i < values.length; i++) {
-        var opt = document.createElement("option");
-        opt.innerText = values[i];
-        opt.value = valueSelector(i, values[i]);
-        select.appendChild(opt);
-      }
+      select.append(
+        values.map((value, index) =>
+          $("<option/>", {
+            text: value,
+            value: valueSelector(index, value),
+          })
+        )
+      );
     }
   }
 }

@@ -17,16 +17,15 @@ const contactsForm = new Form(
     new FormField("gender", new RadioGroupValidator()),
     new FormField("age", new NotEmptyValidator()),
   ],
-  (isValid) => {
-    const submitButton = document.getElementById("contacts-submit");
-    submitButton.disabled = !isValid;
-    submitButton.className = isValid ? "" : "inactive";
-  }
+  (isValid) =>
+    $("#contacts-submit")
+      .attr("disabled", !isValid)
+      .attr("class", isValid ? "" : "inactive")
 );
 
-const calendar = new Calendar(new Date(), "date-picker");
+const calendar = new Calendar(new Date());
 
-window.addEventListener("load", () => {
+$(() => {
   contactsForm.addListeners();
   calendar.setup();
 });

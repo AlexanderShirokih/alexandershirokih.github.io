@@ -4,7 +4,7 @@
 class Validator {
   /**
    * Checks field for validity.
-   * @param {HTMLElement} element HTMLElement to be validated
+   * @param {JQuery<HTMLElement>} element HTMLElement to be validated
    * @returns {boolean} `true` is field completes validation successfully
    */
   isValid(element) {
@@ -35,7 +35,7 @@ class PatternValidator extends Validator {
   }
 
   isValid(element) {
-    return element.value.match(this.#pattern);
+    return (element.val() || "").match(this.#pattern);
   }
 
   get error() {
@@ -48,7 +48,7 @@ class PatternValidator extends Validator {
  */
 class NotEmptyValidator extends Validator {
   isValid(element) {
-    return element.value;
+    return element.val();
   }
 
   get error() {
@@ -61,8 +61,7 @@ class NotEmptyValidator extends Validator {
  */
 class RadioGroupValidator extends Validator {
   isValid(element) {
-    let radios = [...element.querySelectorAll("input[type=radio]")];
-    return radios.find((e) => e.checked) != undefined;
+    return element.children("input[type=radio]:checked").val();
   }
 
   get error() {
@@ -82,8 +81,10 @@ class CheckboxValidator extends Validator {
   }
 
   isValid(element) {
-    let checkboxes = [...element.querySelectorAll("input[type=checkbox]")];
-    return checkboxes.filter((e) => e.checked).length >= this.#checkedCount;
+    return (
+      element.children("input[type=checkbox]:checked").length >=
+      this.#checkedCount
+    );
   }
 
   get error() {
@@ -112,7 +113,7 @@ class FormField {
    * Gets HTMLElement object
    */
   get element() {
-    return document.getElementById(this.#id);
+    return $("#" + this.#id);
   }
 
   /**
@@ -127,27 +128,21 @@ class FormField {
    * if the field has an error.
    */
   validate() {
-    const input = this.element;
-    const form = input.parentNode;
-
     const errorId = `error_for_${this.#id}`;
 
-    let errorNode = document.getElementById(errorId);
-
-    if (errorNode != null) {
-      form.removeChild(errorNode);
-    }
+    $("#" + errorId).remove();
 
     if (this.isValid) {
       return;
     }
 
-    errorNode = document.createElement("span");
-    errorNode.id = errorId;
-    errorNode.className = "errorHint";
-    errorNode.innerText = this.#validator.error;
+    const newErrorNode = $("<span/>", {
+      id: errorId,
+      class: "errorHint",
+      text: this.#validator.error,
+    });
 
-    form.insertBefore(errorNode, input);
+    newErrorNode.insertBefore(this.element);
   }
 }
 
@@ -175,9 +170,9 @@ class Form {
     this.#validate();
 
     this.#fields.forEach((field) => {
-      let input = field.element;
-      input.addEventListener("focusout", () => {
-        input.className = field.isValid ? "valid" : "invalid";
+      const input = field.element;
+      input.on("focusout", () => {
+        input.attr("class", field.isValid ? "valid" : "invalid");
         field.validate();
         this.#validate();
       });

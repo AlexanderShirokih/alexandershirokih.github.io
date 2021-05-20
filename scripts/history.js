@@ -5,21 +5,23 @@ import { menuPages } from "./modules/static-content.js";
  * Fills the visit history from the specified storage
  * @param {Storage} storage
  */
-function createHistoryTable(containerId, storage) {
+function createHistoryTable(container, storage) {
   const history = loadPageVisitList(storage);
-
-  const container = document.getElementById(containerId);
 
   for (const page of menuPages) {
     const pageName = `/${page.href}`;
     const title = page.title;
 
     const counter = history[pageName] == null ? 0 : history[pageName];
-    container.innerHTML += `<div>${title}</div><div>${pageName}</div><div>${counter}</div>`;
+
+    container
+      .append($("<div/>", { text: title }))
+      .append($("<div/>", { text: pageName }))
+      .append($("<div/>", { text: counter }));
   }
 }
 
-window.addEventListener("load", () => {
-  createHistoryTable("session-history", window.sessionStorage);
-  createHistoryTable("local-history", window.localStorage);
+$(function () {
+  createHistoryTable($("#session-history"), window.sessionStorage);
+  createHistoryTable($("#local-history"), window.localStorage);
 });

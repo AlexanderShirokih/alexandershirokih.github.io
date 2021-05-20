@@ -2,6 +2,11 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      type="text/css"
+    />
     <link rel="stylesheet" href="styles/style.css" type="text/css" />
     <link rel="stylesheet" href="styles/photos.css" type="text/css" />
     <title>Фотографий пост</title>
@@ -26,6 +31,19 @@
         <h3>Блок рандомных картинок</h3>
         <div class="photos-block" id="rand-pictures"></div>
       </article>
+      <div id="picture-viewer">
+        <div class="picture-area">
+          <div>
+            <img id="image-preview" />
+            <i class="preview-close-btn fas fa-times"></i>
+          </div>
+          <div>
+            <i class="image-preview-nav-btn left fas fa-chevron-left"></i>
+            <span id="image-preview-label"></span>
+            <i class="image-preview-nav-btn right fas fa-chevron-right"></i>
+          </div>
+        </div>
+      </div>
     </main>
   </body>
 </html>

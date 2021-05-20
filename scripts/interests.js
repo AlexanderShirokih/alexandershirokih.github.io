@@ -1,4 +1,5 @@
 import { interests } from "./modules/static-content.js";
+import { createSmartPopover } from "./modules/popover.js";
 
 $(() => {
   $("#interersts-main")
@@ -21,6 +22,10 @@ $(() => {
       })
     )
     .append(interests.map((interest) => createArticle(interest)));
+
+  $("span").each(function () {
+    createSmartPopover($(this));
+  });
 });
 
 function createArticle(data) {

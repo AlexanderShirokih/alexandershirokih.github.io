@@ -50,4 +50,40 @@ function createSmartPopover(element) {
   });
 }
 
-export { createSmartPopover };
+/**
+ * Shows modal dialog.
+ * @param {String} content the message will be shown
+ * @param {String} positive localization for "positive" button
+ * @param {String} negative localization for "negative" button
+ * @param {Function<boolean>} callback `function(isOk)` that called when user makes a choice.
+ */
+function showInfoDialog(content, positive, negative, callback) {
+  console.log("SHOW!!!");
+  const dialog = $("<div/>", { class: "dialog-wrapper" }).appendTo($("body"));
+
+  dialog.append(
+    $("<div/>", { class: "modal-dialog" })
+      .append($("<div/>", { class: "content", text: content }))
+      .append(
+        $("<div/>", { class: "control" })
+          .append(
+            $("<button/>", { class: "outline" })
+              .text(negative)
+              .on("click", function () {
+                dialog.remove();
+                callback(false);
+              })
+          )
+          .append(
+            $("<button/>")
+              .text(positive)
+              .on("click", () => {
+                dialog.remove();
+                callback(true);
+              })
+          )
+      )
+  );
+}
+
+export { createSmartPopover, showInfoDialog };

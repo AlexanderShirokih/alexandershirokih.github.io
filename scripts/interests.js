@@ -1,5 +1,5 @@
 import { interests } from "./modules/static-content.js";
-import { createSmartPopover } from "./modules/popover.js";
+import { createSmartPopover } from "./modules/modal.js";
 
 $(() => {
   $("#interersts-main")

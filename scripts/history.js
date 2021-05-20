@@ -1,5 +1,6 @@
 import { loadPageVisitList } from "./modules/tracking.js";
 import { menuPages } from "./modules/static-content.js";
+import { showInfoDialog } from "./modules/modal.js";
 
 /**
  * Fills the visit history from the specified storage
@@ -21,7 +22,21 @@ function createHistoryTable(container, storage) {
   }
 }
 
-$(function () {
+$(() => {
   createHistoryTable($("#session-history"), window.sessionStorage);
   createHistoryTable($("#local-history"), window.localStorage);
+
+  $("#clear-local-history").on("click", () =>
+    showInfoDialog(
+      "Очистить локальную историю просмотра",
+      "Очистить",
+      "Отмена",
+      (isOk) => {
+        if (isOk) {
+          window.localStorage.clear();
+          location.reload();
+        }
+      }
+    )
+  );
 });

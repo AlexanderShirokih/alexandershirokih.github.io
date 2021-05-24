@@ -188,7 +188,7 @@ class Form {
   }
 
   /**
-   * Validates all the form fields and disables submit button if the form has errors.
+   * Validates all the form fields and disables the submit button if the form has errors.
    */
   #validate() {
     this.#onFormValidationChanged(this.isValid);

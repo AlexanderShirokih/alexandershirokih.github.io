@@ -9,7 +9,7 @@ function searchInfo(key) {
 }
 
 /**
- * Creates popover that is shows when mouse is hover on the element with certain id.
+ * Creates a popover that shows when the mouse is hovering on the element with a certain id.
  * @param {JQuery<HTMLElement>} element the element to assign the popover
  */
 function createSmartPopover(element) {
@@ -55,7 +55,7 @@ function createSmartPopover(element) {
  * @param {String} content the message will be shown
  * @param {String} positive localization for "positive" button
  * @param {String} negative localization for "negative" button
- * @param {Function<boolean>} callback `function(isOk)` that called when user makes a choice.
+ * @param {Function<boolean>} callback `function(isOk)` that is called when the user  makes a choice.
  */
 function showInfoDialog(content, positive, negative, callback) {
   console.log("SHOW!!!");
